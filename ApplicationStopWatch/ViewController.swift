@@ -17,10 +17,7 @@ class ViewController: UIViewController {
     var count:Int = 0
     var timerCounting:Bool = false
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
+    
 
     
     @IBAction func resetTapped(_ sender: Any) {
@@ -61,8 +58,65 @@ class ViewController: UIViewController {
         return timeString
     }
     //***********************//***********************//***********************//***********************//***********************//*****
-    @IBOutlet weak var switchView: UISegmentedControl!
+    @IBOutlet weak var timerView : UIView!
+    @IBOutlet weak var stopWatchView : UIView!
+    @IBOutlet weak var secondResetButton: UIButton!
+    
+    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var secondStartButton: UIButton!
+    @IBOutlet weak var secondStopButton: UIButton!
+    @IBOutlet weak var secondTimerLabel: UILabel!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+//        if secondTimerLabel == nil {
+//            return
+//        }
+//        secondTimerLabel.text = ""
+        pickerView?.dataSource = self
+        
+    }
+    
+    @IBAction func secondStartTapped(_ sender: Any) {
+        pickerView.alpha = 0
+    }
+    
+    @IBAction func secondStopTapped(_ sender: Any) {
+        pickerView.alpha = 1
+    }
+    
+    @IBAction func secondResetTapped(_ sender: Any) {
+        pickerView.alpha = 1
+    }
+    @IBAction func switchViews (_ sender: UISegmentedControl){
+        if sender.selectedSegmentIndex == 0{
+            timerView.alpha = 1
+            stopWatchView.alpha = 0
+        }
+        else{
+            timerView.alpha = 0
+            stopWatchView.alpha = 1
+        }
+    }
+    
+    
+    
+    
     
     
 }
 
+extension ViewController:UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 3
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+         return 5
+    }
+    
+    
+}
+//extension ViewCon troller:UIPickerViewDelegate {
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return "Hi"
+//    }
+//}

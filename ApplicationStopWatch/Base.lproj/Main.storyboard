@@ -29,6 +29,9 @@
                                     <segment title="Timer"/>
                                     <segment title="Stopwatch"/>
                                 </segments>
+                                <connections>
+                                    <action selector="switchViews:" destination="BYZ-38-t0r" eventType="valueChanged" id="L6J-ir-RXg"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlE-bd-FEl">
                                 <rect key="frame" x="0.0" y="235" width="414" height="85"/>
@@ -75,7 +78,7 @@
                                     <action selector="startTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f4L-sP-H5e"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fhp-CX-MA8">
+                            <containerView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fhp-CX-MA8">
                                 <rect key="frame" x="0.0" y="201" width="414" height="500"/>
                                 <connections>
                                     <segue destination="VA2-AG-gn5" kind="embed" id="ANj-dx-YlI"/>
@@ -119,8 +122,9 @@
                         <outlet property="resetButton" destination="pMi-tG-DdC" id="ojL-yf-rbL"/>
                         <outlet property="startButton" destination="a1B-Ao-Pi8" id="gMl-bG-Aal"/>
                         <outlet property="stopButton" destination="Qz5-nq-eUl" id="acM-Ea-Jo4"/>
-                        <outlet property="switchView" destination="1cJ-AH-hyY" id="amU-tn-4oS"/>
+                        <outlet property="stopWatchView" destination="Fhp-CX-MA8" id="2t9-47-h3K"/>
                         <outlet property="timerLabel" destination="hlE-bd-FEl" id="RpV-Ys-qbf"/>
+                        <outlet property="timerView" destination="Fhp-CX-MA8" id="gmd-kF-bpC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -130,16 +134,93 @@
         <!--View Controller-->
         <scene sceneID="WmF-ZQ-Np0">
             <objects>
-                <viewController id="VA2-AG-gn5" sceneMemberID="viewController">
+                <viewController id="VA2-AG-gn5" customClass="ViewController" customModule="ApplicationStopWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mYN-Nf-yVB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBt-yD-d3l">
+                                <rect key="frame" x="0.0" y="40" width="414" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="70"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uoK-aY-BB5">
+                                <rect key="frame" x="39" y="405" width="112" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="kse-iG-iiL"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <backgroundConfiguration key="background" image="square.circle.fill" catalog="system"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="resetTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Io-sC-IT4"/>
+                                    <action selector="secondResetTapped:" destination="VA2-AG-gn5" eventType="touchUpInside" id="m9V-dD-sFx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5o-Uj-LNO">
+                                <rect key="frame" x="151" y="405" width="112" height="80"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <backgroundConfiguration key="background" image="pause.circle.fill" catalog="system"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="secondStopTapped:" destination="VA2-AG-gn5" eventType="touchUpInside" id="VyP-nj-FqP"/>
+                                    <action selector="stopTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GiV-VY-obS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaq-hd-bS9">
+                                <rect key="frame" x="256" y="405" width="112" height="80"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <backgroundConfiguration key="background" image="play.circle.fill" catalog="system"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="secondStartTapped:" destination="VA2-AG-gn5" eventType="touchUpInside" id="e0l-0Y-s6i"/>
+                                    <action selector="startTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fKm-wb-Bgs"/>
+                                </connections>
+                            </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EWa-Gi-rQc">
+                                <rect key="frame" x="0.0" y="154" width="414" height="216"/>
+                            </pickerView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="azZ-Bk-ZTY"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                        <constraints>
+                            <constraint firstItem="EWa-Gi-rQc" firstAttribute="trailing" secondItem="azZ-Bk-ZTY" secondAttribute="trailing" id="5Cb-tx-TAX"/>
+                            <constraint firstItem="uoK-aY-BB5" firstAttribute="leading" secondItem="azZ-Bk-ZTY" secondAttribute="leading" constant="39" id="CE3-Ig-hdX"/>
+                            <constraint firstItem="G5o-Uj-LNO" firstAttribute="leading" secondItem="uoK-aY-BB5" secondAttribute="trailing" id="EPN-Yd-f37"/>
+                            <constraint firstItem="G5o-Uj-LNO" firstAttribute="centerX" secondItem="mYN-Nf-yVB" secondAttribute="centerX" id="HBb-47-irt"/>
+                            <constraint firstItem="azZ-Bk-ZTY" firstAttribute="bottom" secondItem="uaq-hd-bS9" secondAttribute="bottom" constant="15" id="IQG-yL-3pZ"/>
+                            <constraint firstItem="EWa-Gi-rQc" firstAttribute="leading" secondItem="azZ-Bk-ZTY" secondAttribute="leading" id="IbC-bu-wsx"/>
+                            <constraint firstItem="azZ-Bk-ZTY" firstAttribute="trailing" secondItem="uaq-hd-bS9" secondAttribute="trailing" constant="46" id="Ju5-fv-An7"/>
+                            <constraint firstItem="G5o-Uj-LNO" firstAttribute="width" secondItem="uaq-hd-bS9" secondAttribute="width" id="XQt-iw-cxU"/>
+                            <constraint firstItem="G5o-Uj-LNO" firstAttribute="top" secondItem="uaq-hd-bS9" secondAttribute="top" id="ann-ms-exR"/>
+                            <constraint firstItem="azZ-Bk-ZTY" firstAttribute="bottom" secondItem="EWa-Gi-rQc" secondAttribute="bottom" constant="130" id="dj9-Mv-309"/>
+                            <constraint firstItem="G5o-Uj-LNO" firstAttribute="centerY" secondItem="uoK-aY-BB5" secondAttribute="centerY" id="iHj-w6-BP0"/>
+                            <constraint firstItem="azZ-Bk-ZTY" firstAttribute="bottom" secondItem="G5o-Uj-LNO" secondAttribute="bottom" constant="15" id="jKc-rc-F9s"/>
+                            <constraint firstItem="G5o-Uj-LNO" firstAttribute="centerY" secondItem="uaq-hd-bS9" secondAttribute="centerY" id="sDL-Tf-wai"/>
+                            <constraint firstItem="azZ-Bk-ZTY" firstAttribute="bottom" secondItem="uoK-aY-BB5" secondAttribute="bottom" constant="15" id="uOf-8Q-exs"/>
+                            <constraint firstItem="G5o-Uj-LNO" firstAttribute="width" secondItem="uoK-aY-BB5" secondAttribute="width" id="uQl-zi-Wei"/>
+                            <constraint firstItem="uoK-aY-BB5" firstAttribute="top" secondItem="G5o-Uj-LNO" secondAttribute="top" id="wjh-0h-frN"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="pickerView" destination="EWa-Gi-rQc" id="beC-fZ-ucM"/>
+                        <outlet property="secondResetButton" destination="uoK-aY-BB5" id="soG-4l-sMp"/>
+                        <outlet property="secondStartButton" destination="uaq-hd-bS9" id="Saa-zj-2wG"/>
+                        <outlet property="secondStopButton" destination="G5o-Uj-LNO" id="f1T-CA-J57"/>
+                        <outlet property="secondTimerLabel" destination="aBt-yD-d3l" id="YVJ-nR-vEs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pxl-4g-oUs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="913" y="113"/>
+            <point key="canvasLocation" x="145" y="681"/>
         </scene>
     </scenes>
     <resources>
@@ -147,9 +228,6 @@
         <image name="play.circle.fill" catalog="system" width="128" height="121"/>
         <image name="square.circle.fill" catalog="system" width="128" height="121"/>
         <image name="timer" catalog="system" width="128" height="121"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

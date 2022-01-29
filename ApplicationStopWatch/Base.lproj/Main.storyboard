@@ -84,6 +84,10 @@
                                     <segue destination="VA2-AG-gn5" kind="embed" id="ANj-dx-YlI"/>
                                 </connections>
                             </containerView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="stopwatch" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Wcw-oa-D09">
+                                <rect key="frame" x="154" y="51.5" width="100" height="105"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemYellowColor"/>
@@ -94,9 +98,12 @@
                             <constraint firstItem="pMi-tG-DdC" firstAttribute="top" secondItem="Qz5-nq-eUl" secondAttribute="top" id="42S-jP-f21"/>
                             <constraint firstItem="1cJ-AH-hyY" firstAttribute="leading" secondItem="ouT-Vs-0rF" secondAttribute="trailing" constant="-150" id="7n3-YE-hWV"/>
                             <constraint firstItem="ouT-Vs-0rF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="154" id="7x8-4E-nnA"/>
+                            <constraint firstItem="Wcw-oa-D09" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="7" id="CnB-Vn-Btv"/>
                             <constraint firstItem="Fhp-CX-MA8" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Fdk-KW-JXR"/>
+                            <constraint firstItem="1cJ-AH-hyY" firstAttribute="top" secondItem="Wcw-oa-D09" secondAttribute="bottom" constant="7" id="LTk-Kn-aiw"/>
                             <constraint firstItem="Fhp-CX-MA8" firstAttribute="top" secondItem="1cJ-AH-hyY" secondAttribute="bottom" constant="6" id="M1K-ug-2TD"/>
                             <constraint firstItem="Fhp-CX-MA8" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ON6-Qr-77g"/>
+                            <constraint firstItem="Wcw-oa-D09" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="154" id="Omz-cv-hfU"/>
                             <constraint firstItem="Qz5-nq-eUl" firstAttribute="centerY" secondItem="a1B-Ao-Pi8" secondAttribute="centerY" id="PkH-5W-YLH"/>
                             <constraint firstItem="Qz5-nq-eUl" firstAttribute="leading" secondItem="pMi-tG-DdC" secondAttribute="trailing" id="YDh-e6-v8q"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ouT-Vs-0rF" secondAttribute="trailing" constant="160" id="Yo7-4B-nrY"/>
@@ -107,6 +114,7 @@
                             <constraint firstItem="Qz5-nq-eUl" firstAttribute="width" secondItem="a1B-Ao-Pi8" secondAttribute="width" id="gTk-8o-aNI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Fhp-CX-MA8" secondAttribute="bottom" constant="161" id="hLi-7N-HVO"/>
                             <constraint firstItem="Qz5-nq-eUl" firstAttribute="centerY" secondItem="pMi-tG-DdC" secondAttribute="centerY" id="hhB-6Q-dUM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Wcw-oa-D09" secondAttribute="trailing" constant="160" id="loc-Iz-Iz4"/>
                             <constraint firstItem="Qz5-nq-eUl" firstAttribute="top" secondItem="hlE-bd-FEl" secondAttribute="bottom" constant="285" id="m86-x8-Jju"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pMi-tG-DdC" secondAttribute="bottom" constant="177" id="nO5-iw-xak"/>
                             <constraint firstItem="hlE-bd-FEl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oyK-Rp-R1e"/>
@@ -119,6 +127,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="imageOfStopWatch" destination="Wcw-oa-D09" id="Fqi-oe-cUV"/>
+                        <outlet property="imageOfTimer" destination="ouT-Vs-0rF" id="vYi-7t-fO5"/>
                         <outlet property="resetButton" destination="pMi-tG-DdC" id="ojL-yf-rbL"/>
                         <outlet property="startButton" destination="a1B-Ao-Pi8" id="gMl-bG-Aal"/>
                         <outlet property="stopButton" destination="Qz5-nq-eUl" id="acM-Ea-Jo4"/>
@@ -227,6 +237,7 @@
         <image name="pause.circle.fill" catalog="system" width="128" height="121"/>
         <image name="play.circle.fill" catalog="system" width="128" height="121"/>
         <image name="square.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="stopwatch" catalog="system" width="121" height="128"/>
         <image name="timer" catalog="system" width="128" height="121"/>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
